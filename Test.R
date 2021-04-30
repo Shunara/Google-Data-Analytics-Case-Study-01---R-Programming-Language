@@ -1,0 +1,649 @@
+#Loading libraries that will be used
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+
+#Importing the dataset from the tables
+
+# April/2020
+X202004 <- read_csv("Google Data Analytics Portifolio/202004-divvy-tripdata.csv")
+
+# May/2020
+X202005 <- read_csv("Google Data Analytics Portifolio/202005-divvy-tripdata.csv")
+
+# June/2020
+X202006 <- read_csv("Google Data Analytics Portifolio/202006-divvy-tripdata.csv")
+
+# July/2020
+X202007 <- read_csv("Google Data Analytics Portifolio/202007-divvy-tripdata.csv")
+
+# August/2020
+X202008 <- read_csv("Google Data Analytics Portifolio/202008-divvy-tripdata.csv")
+
+# September/2020
+X202009 <- read_csv("Google Data Analytics Portifolio/202009-divvy-tripdata.csv")
+
+# October/2020
+X202010 <- read_csv("Google Data Analytics Portifolio/202010-divvy-tripdata.csv")
+
+# November/2020
+X202011 <- read_csv("Google Data Analytics Portifolio/202011-divvy-tripdata.csv")
+
+# December/2020
+X202012 <- read_csv("Google Data Analytics Portifolio/202012-divvy-tripdata.csv")
+
+# January/2021
+X202101 <- read_csv("Google Data Analytics Portifolio/202101-divvy-tripdata.csv")
+
+# February/2021
+X202102 <- read_csv("Google Data Analytics Portifolio/202102-divvy-tripdata.csv")
+
+# March/2021
+X202103 <- read_csv("Google Data Analytics Portifolio/202103-divvy-tripdata.csv")
+
+
+
+
+#Creating a column called "time_spent" in each table. Time_spent = ended_at - started_at
+
+# April/2020
+X202004 <- X202004 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# May/2020
+X202005 <- X202005 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# June/2020
+X202006 <- X202006 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# July/2020
+X202007 <- X202007 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# August/2020
+X202008 <- X202008 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# September/2020
+X202009 <- X202009 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# October/2020
+X202010 <- X202010 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# November/2020
+X202011 <- X202011 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# December/2020
+X202012 <- X202012 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# January/2021
+X202101 <- X202101 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# February/2021
+X202102 <- X202102 %>%
+  mutate(time_spent=ended_at-started_at)
+
+# March/2021
+X202103 <- X202103 %>%
+  mutate(time_spent=ended_at-started_at)
+
+
+# Removing possible values in "time_spent" column that are less than zero from each tables
+
+# April/2020
+X202004 <- X202004 %>%
+  filter(X202004$time_spent > 0)
+
+# May/2020
+X202005 <- X202005 %>%
+  filter(X202005$time_spent > 0)
+
+# June/2020
+X202006 <- X202006 %>%
+  filter(X202006$time_spent > 0)
+
+# July/2020
+X202007 <- X202007 %>%
+  filter(X202007$time_spent > 0)
+
+# August/2020
+X202008 <- X202008 %>%
+  filter(X202008$time_spent > 0)
+
+# September/2020
+X202009 <- X202009 %>%
+  filter(X202009$time_spent > 0)
+
+# October/2020
+X202010 <- X202010 %>%
+  filter(X202010$time_spent > 0)
+
+# November/2020
+X202011 <- X202011 %>%
+  filter(X202011$time_spent > 0)
+
+# December/2020
+X202012 <- X202012 %>%
+  filter(X202012$time_spent > 0)
+
+# January/2021
+X202101 <- X202101 %>%
+  filter(X202101$time_spent > 0)
+
+# February/2021
+X202102 <- X202102 %>%
+  filter(X202102$time_spent > 0)
+
+# March/2021
+X202103 <- X202103 %>%
+  filter(X202103$time_spent > 0)
+
+
+
+
+
+# Removing the columns that won't be used
+
+# April/2020
+X202004 <- subset(X202004, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# May/2020
+X202005 <- subset(X202005, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# June/2020
+X202006 <- subset(X202006, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# July/2020
+X202007 <- subset(X202007, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# August/2020
+X202008 <- subset(X202008, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# September/2020
+X202009 <- subset(X202009, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# October/2020
+X202010 <- subset(X202010, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# November/2020
+X202011 <- subset(X202011, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# December/2020
+X202012 <- subset(X202012, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# January/2021
+X202101 <- subset(X202101, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# February/2021
+X202102 <- subset(X202102, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+# March/2021
+X202103 <- subset(X202103, select = -c(ride_id,started_at,ended_at,start_station_name,start_station_id,end_station_name,end_station_id,start_lat,start_lng,end_lat,end_lng))
+
+
+                  
+#Dividing annual members and casual from each table into two separated tables
+
+# April/2020
+X202004_casual <- filter(X202004,member_casual=="casual")
+X202004_annual <- filter(X202004,member_casual=="member")
+
+# May/2020
+X202005_casual <- filter(X202005,member_casual=="casual")
+X202005_annual <- filter(X202005,member_casual=="member")
+
+# June/2020
+X202006_casual <- filter(X202006,member_casual=="casual")
+X202006_annual <- filter(X202006,member_casual=="member")
+
+# July/2020
+X202007_casual <- filter(X202007,member_casual=="casual")
+X202007_annual <- filter(X202007,member_casual=="member")
+
+# August/2020
+X202008_casual <- filter(X202008,member_casual=="casual")
+X202008_annual <- filter(X202008,member_casual=="member")
+
+# September/2020
+X202009_casual <- filter(X202009,member_casual=="casual")
+X202009_annual <- filter(X202009,member_casual=="member")
+
+# October/2020
+X202010_casual <- filter(X202010,member_casual=="casual")
+X202010_annual <- filter(X202010,member_casual=="member")
+
+# November/2020
+X202011_casual <- filter(X202011,member_casual=="casual")
+X202011_annual <- filter(X202011,member_casual=="member")
+
+# December/2020
+X202012_casual <- filter(X202012,member_casual=="casual")
+X202012_annual <- filter(X202012,member_casual=="member")
+
+# January/2021
+X202101_casual <- filter(X202101,member_casual=="casual")
+X202101_annual <- filter(X202101,member_casual=="member")
+
+# February/2021
+X202102_casual <- filter(X202102,member_casual=="casual")
+X202102_annual <- filter(X202102,member_casual=="member")
+
+# March/2021
+X202103_casual <- filter(X202103,member_casual=="casual")
+X202103_annual <- filter(X202103,member_casual=="member")
+
+
+
+# Summarizing each table per type of bike used, average_time of usage per bike,
+# times_used representing how many times each bike was used in the period and
+# the total_time each bike was used.
+
+# April/2020
+
+# casual member
+times_used_04_casual <- X202004_casual %>%
+  count(rideable_type,sort="TRUE")
+X202004_casual <- X202004_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_04_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202004))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_04_annual <- X202004_annual %>%
+  count(rideable_type,sort="TRUE")
+X202004_annual <-  X202004_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_04_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202004))%>%
+  mutate(member="annual")
+
+# May/2020
+
+# casual member
+times_used_05_casual <- X202005_casual %>%
+  count(rideable_type,sort="TRUE")
+X202005_casual <- X202005_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_05_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202005))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_05_annual <- X202005_annual %>%
+  count(rideable_type,sort="TRUE")
+X202005_annual <-  X202005_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_05_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202005))%>%
+  mutate(member="annual")
+X202005_annual
+
+# June/2020
+
+# casual member
+times_used_06_casual <- X202006_casual %>%
+  count(rideable_type,sort="TRUE")
+X202006_casual <- X202006_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_06_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202006))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_06_annual <- X202006_annual %>%
+  count(rideable_type,sort="TRUE")
+X202006_annual <-  X202006_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_06_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202006))%>%
+  mutate(member="annual")
+
+# July/2020
+
+# casual member
+times_used_07_casual <- X202007_casual %>%
+  count(rideable_type,sort="TRUE")
+X202007_casual <- X202007_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_07_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202007))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_07_annual <- X202007_annual %>%
+  count(rideable_type,sort="TRUE")
+X202007_annual <-  X202007_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_07_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202007))%>%
+  mutate(member="annual")
+
+# August/2020
+
+# casual member
+times_used_08_casual <- X202008_casual %>%
+  count(rideable_type,sort="TRUE")
+X202008_casual <- X202008_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_08_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202008))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_08_annual <- X202008_annual %>%
+  count(rideable_type,sort="TRUE")
+X202008_annual <-  X202008_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_08_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202008))%>%
+  mutate(member="annual")
+
+# September/2020
+
+# casual member
+times_used_09_casual <- X202009_casual %>%
+  count(rideable_type,sort="TRUE")
+X202009_casual <- X202009_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_09_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202009))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_09_annual <- X202009_annual %>%
+  count(rideable_type,sort="TRUE")
+X202009_annual <-  X202009_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_09_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202009))%>%
+  mutate(member="annual")
+
+# October/2020
+
+# casual member
+times_used_10_casual <- X202010_casual %>%
+  count(rideable_type,sort="TRUE")
+X202010_casual <- X202010_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_10_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202010))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_10_annual <- X202010_annual %>%
+  count(rideable_type,sort="TRUE")
+X202010_annual <-  X202010_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_10_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202010))%>%
+  mutate(member="annual")
+
+# November/2020
+
+# casual member
+times_used_11_casual <- X202011_casual %>%
+  count(rideable_type,sort="TRUE")
+X202011_casual <- X202011_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_11_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202011))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_11_annual <- X202011_annual %>%
+  count(rideable_type,sort="TRUE")
+X202011_annual <-  X202011_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_11_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202011))%>%
+  mutate(member="annual")
+
+# December/2020
+
+# casual member
+times_used_12_casual <- X202012_casual %>%
+  count(rideable_type,sort="TRUE")
+X202012_casual <- X202012_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_12_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202012))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_12_annual <- X202012_annual %>%
+  count(rideable_type,sort="TRUE")
+X202012_annual <-  X202012_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_12_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202012))%>%
+  mutate(member="annual")
+
+# January/2021
+
+# casual member
+times_used_01_casual <- X202101_casual %>%
+  count(rideable_type,sort="TRUE")
+X202101_casual <- X202101_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_01_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202101))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_01_annual <- X202101_annual %>%
+  count(rideable_type,sort="TRUE")
+X202101_annual <-  X202101_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_01_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202101))%>%
+  mutate(member="annual")
+
+# February/2021
+
+# casual member
+times_used_02_casual <- X202102_casual %>%
+  count(rideable_type,sort="TRUE")
+X202102_casual <- X202102_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_02_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202102))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_02_annual <- X202102_annual %>%
+  count(rideable_type,sort="TRUE")
+X202102_annual <-  X202102_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_02_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202102))%>%
+  mutate(member="annual")
+
+# March/2021
+
+# casual member
+times_used_03_casual <- X202103_casual %>%
+  count(rideable_type,sort="TRUE")
+X202103_casual <- X202103_casual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_03_casual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202103))%>%
+  mutate(member="casual")
+
+# annual member
+times_used_03_annual <- X202103_annual %>%
+  count(rideable_type,sort="TRUE")
+X202103_annual <-  X202103_annual %>%
+  group_by(rideable_type)%>%
+  summarise(average_time_min = as.numeric(mean(time_spent)/60))%>%
+  mutate(times_used_03_annual)%>%
+  rename("times_used"=n)%>%
+  mutate(total_time_hour=round(times_used*average_time_min/60))%>%
+  mutate(month=ym(202103))%>%
+  mutate(member="annual")
+
+
+
+# Now, let's mix all the information we have from annual members from April/2020 to March/2021
+
+total_annual <- rbind(X202004_annual,
+                     X202005_annual,
+                     X202006_annual,
+                     X202007_annual,
+                     X202008_annual,
+                     X202009_annual,
+                     X202010_annual,
+                     X202011_annual,
+                     X202012_annual,
+                     X202101_annual,
+                     X202102_annual,
+                     X202103_annual)
+
+
+# Taking a brief look in the table before plotting the charts
+
+total_annual
+
+# Ordering the dataset from annual members by month
+total_annual <- total_annual[order(total_annual$month),]%>%
+  group_by(month)
+
+# Plotting the charts from annual users
+ggplot(total_annual)+geom_line(mapping=aes(x=month,y=average_time_min,color=rideable_type,
+                                           lwd=1,linetype=rideable_type))+
+  theme(legend.position = "right")+
+  labs(title="Time average per bike by in minutes annual users",
+       subtitile="Sample from April-2020 to March 2021",
+       caption="Data provided by Divvy, in Chicago")
+
+
+ggplot(total_annual)+geom_line(mapping=aes(x=month,y=total_time_hour,color=rideable_type,
+                                           lwd=1,linetype=rideable_type))+
+  theme(legend.position = "right")+
+  labs(title="Sum of the time in hours by annual users per month",
+       subtitile="Sample from April-2020 to March 2021",
+       caption="Data provided by Divvy, in Chicago")
+
+
+
+# Let's do the same with the information we have from casual members from April/2020 to March/2021
+
+total_casual <- rbind(X202004_casual,
+                      X202005_casual,
+                      X202006_casual,
+                      X202007_casual,
+                      X202008_casual,
+                      X202009_casual,
+                      X202010_casual,
+                      X202011_casual,
+                      X202012_casual,
+                      X202101_casual,
+                      X202102_casual,
+                      X202103_casual)
+
+
+# Taking a brief look in the table before plotting the charts
+
+total_annual
+
+
+# Ordering the dataset from casual members by month
+total_casual <- total_casual[order(total_casual$month),]%>%
+  group_by(month)
+
+# Plotting the charts
+ggplot(total_casual)+geom_line(mapping=aes(x=month,y=average_time_min,color=rideable_type,
+                                           lwd=1,linetype=rideable_type))+
+  theme(legend.position = "right")+
+  labs(title="Time average per bike in minutes by casual users",
+       subtitile="Sample from April-2020 to March 2021",
+       caption="Data provided by Divvy, in Chicago")
+
+
+
+ggplot(total_casual)+geom_line(mapping=aes(x=month,y=total_time_hour,color=rideable_type,
+                                           lwd=1,linetype=rideable_type))+
+  theme(legend.position = "right")+
+  labs(title="Sum of the time in hours by casual users per month",
+       subtitile="Sample from April-2020 to March 2021",
+       caption="Data provided by Divvy, in Chicago")
+
